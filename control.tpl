@@ -1,5 +1,82 @@
 <?php include $this->tpl_header; ?>
 
+<script type="text/javascript">
+var actionUrlBase = 'control.php?_v=<?= $this->vid; ?>&_a=';
+var modals = {
+	kvmreconfigure: {
+		title: "<?= $_lang['vserverkvmreconfigureboxtitle']; ?>",
+		msg: "<?= $_lang['vserverkvmreconfigureboxmsg']; ?>"
+	},
+	poweroff: {
+		title: "<?= $_lang['vserverpoweroffboxtitle']; ?>",
+		msg: "<?= $_lang['vserverpoweroffboxmsg']; ?>"
+	},
+	pxeenable: {
+		title: "<?= $_lang['vserverpxeenableboxtitle']; ?>",
+		msg: "<?= $_lang['vserverpxeenableboxmsg']; ?>"
+	},
+	pxedisable: {
+		title: "<?= $_lang['vserverpxedisableboxtitle']; ?>",
+		msg: "<?= $_lang['vserverpxedisableboxmsg']; ?>"
+	},
+	tunenable: {
+		title: "<?= $_lang['vservertunenableboxtitle']; ?>",
+		msg: "<?= $_lang['vservertunenableboxmsg']; ?>"
+	},
+	tundisable: {
+		title: "<?= $_lang['vservertundisableboxtitle']; ?>",
+		msg: "<?= $_lang['vservertundisableboxmsg']; ?>"
+	},
+	pppenable: {
+		title: "<?= $_lang['vserverpppenableboxtitle']; ?>",
+		msg: "<?= $_lang['vserverpppenableboxmsg']; ?>"
+	},
+	pppdisable: {
+		title: "<?= $_lang['vserverpppdisableboxtitle']; ?>",
+		msg: "<?= $_lang['vserverpppdisableboxmsg']; ?>"
+	},
+	reboot: {
+		title: "<?= $_lang['vserverrebootboxtitle']; ?>",
+		msg: "<?= $_lang['vserverrebootboxmsg']; ?>"
+	},
+	boot: {
+		title: "<?= $_lang['vserverbootboxtitle']; ?>",
+		msg: "<?= $_lang['vserverbootboxmsg']; ?>"
+	},
+	shutdown: {
+		title: "<?= $_lang['vservershutdownboxtitle']; ?>",
+		msg: "<?= $_lang['vservershutdownboxmsg']; ?>"
+	}
+};
+jQuery(document).ready(function($) {
+	window.dialogOpen = function(action) {
+		var url = actionUrlBase + action;
+		$('#actionTitle').text(modals[action].title);
+		$('#actionMsg').text(modals[action].msg);
+		$('#actionLink').attr('href', url);
+		$('#actionModal').modal('show');
+	};
+});
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="actionTitle">Modal title</h4>
+			</div>
+			<div class="modal-body" id="actionMsg">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $_lang[vserveralertno]; ?></button>
+				<a type="button" class="btn btn-primary btn-flat" id="actionLink" href="#"><?= $_lang[vserveralertyes]; ?></a>
+			</div>
+		</div>
+	</div>
+</div>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
