@@ -47,7 +47,7 @@
 				</div>
 
 				<div class="form-group">
-					<input name="Submit" type="submit" value="<?= $_lang['lostpasswordbutton']; ?>" class="btn btn-primary btn-block btn-flat">
+					<input name="Submit" type="submit" value="<?= $_lang['lostpasswordbutton']; ?>" class="btn bg-purple btn-block btn-flat">
 				</div>
 			</form>
 

@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>AdminLTE/dist/css/AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 			 folder instead of downloading all of them to reduce the load. -->
-	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>AdminLTE/dist/css/skins/skin-blue.min.css">
+	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>AdminLTE/dist/css/skins/skin-purple-light.min.css">
 	<!-- NyaVM Custom CSS -->
 	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>style.css">
 
@@ -32,9 +32,43 @@
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/dist/js/app.min.js"></script>
+	<!-- NyaVM -->
+	<script src="<?= $this->tpl_asset_path; ?>script.js"></script>
 </head>
-<body class="hold-transition skin-blue sidebar-mini">
+
+<body class="hold-transition skin-purple-light sidebar-mini">
+
+<!-- Modal -->
+<div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="actionTitle">Modal title</h4>
+			</div>
+			<div class="modal-body" id="actionMsg">
+				...
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $_lang[vserveralertno]; ?></button>
+				<a type="button" class="btn bg-purple btn-flat" id="actionLink" href="#"><?= $_lang[vserveralertyes]; ?></a>
+			</div>
+		</div>
+	</div>
+</div>
+
 <div class="wrapper">
+
+	<script type="text/javascript">
+		var commonModals = {
+			logout: {
+				title: "<?= $_lang['logout']; ?>",
+				msg: "<?=$_lang['logoutalert'];?>",
+				url: "logout.php"
+			}
+		};
+		jQuery.extend(modals, commonModals);
+	</script>
 
 	<header class="main-header">
 
@@ -62,7 +96,7 @@
 						</a>
 					</li>
 					<li>
-						<a href="#">
+						<a href="javascript:dialogOpen('logout');">
 							<i class="fa fa-sign-out" aria-hidden="true"></i>
 							<span class="hidden-xs"><?= $_lang['logout']; ?></span>
 						</a>
@@ -85,7 +119,7 @@
 			</div>
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 			<ul class="sidebar-menu">
-				<li>
+				<li class="active">
 					<a href="home.php">
 						<i class="fa fa-dashboard"></i>
 						<span><?= $_lang['menuhome']; ?></span>

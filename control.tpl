@@ -1,91 +1,74 @@
 <?php include $this->tpl_header; ?>
 
 <script type="text/javascript">
-var actionUrlBase = 'control.php?_v=<?= $this->vid; ?>&_a=';
-var modals = {
+var controlModals = {
 	kvmreconfigure: {
 		title: "<?= $_lang['vserverkvmreconfigureboxtitle']; ?>",
-		msg: "<?= $_lang['vserverkvmreconfigureboxmsg']; ?>"
+		msg: "<?= $_lang['vserverkvmreconfigureboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=kvmreconfigure"
 	},
 	poweroff: {
 		title: "<?= $_lang['vserverpoweroffboxtitle']; ?>",
-		msg: "<?= $_lang['vserverpoweroffboxmsg']; ?>"
+		msg: "<?= $_lang['vserverpoweroffboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=poweroff"
 	},
 	pxeenable: {
 		title: "<?= $_lang['vserverpxeenableboxtitle']; ?>",
-		msg: "<?= $_lang['vserverpxeenableboxmsg']; ?>"
+		msg: "<?= $_lang['vserverpxeenableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=pxeenable"
 	},
 	pxedisable: {
 		title: "<?= $_lang['vserverpxedisableboxtitle']; ?>",
-		msg: "<?= $_lang['vserverpxedisableboxmsg']; ?>"
+		msg: "<?= $_lang['vserverpxedisableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=pxedisable"
 	},
 	tunenable: {
 		title: "<?= $_lang['vservertunenableboxtitle']; ?>",
-		msg: "<?= $_lang['vservertunenableboxmsg']; ?>"
+		msg: "<?= $_lang['vservertunenableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=tunenable"
 	},
 	tundisable: {
 		title: "<?= $_lang['vservertundisableboxtitle']; ?>",
-		msg: "<?= $_lang['vservertundisableboxmsg']; ?>"
+		msg: "<?= $_lang['vservertundisableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=tundisable"
 	},
 	pppenable: {
 		title: "<?= $_lang['vserverpppenableboxtitle']; ?>",
-		msg: "<?= $_lang['vserverpppenableboxmsg']; ?>"
+		msg: "<?= $_lang['vserverpppenableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=pppenable"
 	},
 	pppdisable: {
 		title: "<?= $_lang['vserverpppdisableboxtitle']; ?>",
-		msg: "<?= $_lang['vserverpppdisableboxmsg']; ?>"
+		msg: "<?= $_lang['vserverpppdisableboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=pppdisable"
 	},
 	reboot: {
 		title: "<?= $_lang['vserverrebootboxtitle']; ?>",
-		msg: "<?= $_lang['vserverrebootboxmsg']; ?>"
+		msg: "<?= $_lang['vserverrebootboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=reboot"
 	},
 	boot: {
 		title: "<?= $_lang['vserverbootboxtitle']; ?>",
-		msg: "<?= $_lang['vserverbootboxmsg']; ?>"
+		msg: "<?= $_lang['vserverbootboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=boot"
 	},
 	shutdown: {
 		title: "<?= $_lang['vservershutdownboxtitle']; ?>",
-		msg: "<?= $_lang['vservershutdownboxmsg']; ?>"
+		msg: "<?= $_lang['vservershutdownboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=shutdown"
 	}
 };
-jQuery(document).ready(function($) {
-	window.dialogOpen = function(action) {
-		var url = actionUrlBase + action;
-		$('#actionTitle').text(modals[action].title);
-		$('#actionMsg').text(modals[action].msg);
-		$('#actionLink').attr('href', url);
-		$('#actionModal').modal('show');
-	};
-});
+jQuery.extend(modals, controlModals);
 </script>
-
-<!-- Modal -->
-<div class="modal fade" id="actionModal" tabindex="-1" role="dialog">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="actionTitle">Modal title</h4>
-			</div>
-			<div class="modal-body" id="actionMsg">
-				...
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $_lang[vserveralertno]; ?></button>
-				<a type="button" class="btn btn-primary btn-flat" id="actionLink" href="#"><?= $_lang[vserveralertyes]; ?></a>
-			</div>
-		</div>
-	</div>
-</div>
 
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
-		VPS Control
+		<?= $this->vhostname; ?> (<?= $this->vipaddress; ?>)
 	</h1>
 	<ol class="breadcrumb">
-		<li><a href="home.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-		<li class="active">VPS Control</li>
+		<li><a href="home.php"><i class="fa fa-dashboard"></i> <?= $_lang['controlpanelname']; ?></a></li>
+		<li class="active"><?= $this->vhostname; ?></li>
 	</ol>
 </section>
 
@@ -134,10 +117,6 @@ jQuery(document).ready(function($) {
 	<div class="row">
 		<div class="col-md-12">
 			<div class="box">
-				<div class="box-header">
-					<h3 class="box-title"><?= $this->vhostname; ?> (<?= $this->vipaddress; ?>)</h3>
-				</div>
-				<!-- /.box-header -->
 				<div class="box-body no-padding">
 					<table class="table table-striped"><tbody>
 						<tr>
@@ -229,7 +208,7 @@ jQuery(document).ready(function($) {
 					<?php } ?>
 
 					<a class="btn btn-default btn-flat pull-right box-btn-right" href="log.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverlogbutton']; ?></a>
-					<a class="btn btn-primary btn-flat pull-right box-btn-right" href="control.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverrefreshbutton']; ?></a>
+					<a class="btn bg-purple btn-flat pull-right box-btn-right" href="control.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverrefreshbutton']; ?></a>
 				</div>
 			</div>
 		</div>
@@ -247,7 +226,7 @@ jQuery(document).ready(function($) {
 									<div class="progress-bar" style="width:<?= $this->percentbw; ?>%;background-color:<?= $this->percentbwc; ?>"></div>
 								</div>
 							</td>
-							<td nowrap style="width:40px"><span class="badge bg-light-blue"><?= $this->percentbw; ?>%</span></td>
+							<td nowrap style="width:40px"><span class="badge bg-purple"><?= $this->percentbw; ?>%</span></td>
 							<td nowrap><?= $this->usedbw; ?> <?= $_lang['vserverbarof']; ?> <?= $this->totalbw; ?> <?= $_lang['vserverbarused']; ?> / <?= $this->freebw; ?> <?= $_lang['vserverbarfree']; ?></td>
 						</tr>
 
@@ -259,7 +238,7 @@ jQuery(document).ready(function($) {
 										<div class="progress-bar" style="width:<?= $this->percentmem; ?>%;background-color:<?= $this->percentmemc; ?>"></div>
 									</div>
 								</td>
-								<td nowrap style="width:40px"><span class="badge bg-light-blue"><?= $this->percentmem; ?>%</span></td>
+								<td nowrap style="width:40px"><span class="badge bg-purple"><?= $this->percentmem; ?>%</span></td>
 								<td nowrap><?= $this->usedmem; ?> <?= $_lang['vserverbarof']; ?> <?= $this->totalmem; ?> <?= $_lang['vserverbarused']; ?> / <?= $this->freemem; ?> <?= $_lang['vserverbarfree']; ?></td>
 							</tr>
 
@@ -271,7 +250,7 @@ jQuery(document).ready(function($) {
 											<div class="progress-bar" style="width:<?= $this->percentvswap; ?>%;background-color:<?= $this->percentvswapc; ?>"></div>
 										</div>
 									</td>
-									<td nowrap style="width:40px"><span class="badge bg-light-blue"><?= $this->percentvswap; ?>%</span></td>
+									<td nowrap style="width:40px"><span class="badge bg-purple"><?= $this->percentvswap; ?>%</span></td>
 									<td nowrap><?= $this->usedvswap; ?> <?= $_lang['vserverbarof']; ?> <?= $this->totalvswap; ?> <?= $_lang['vserverbarused']; ?> / <?= $this->freevswap; ?> <?= $_lang['vserverbarfree']; ?></td>
 								</tr>
 							<?php } ?>
@@ -286,7 +265,7 @@ jQuery(document).ready(function($) {
 										<div class="progress-bar" style="width:<?= $this->percenthdd; ?>%;background-color:<?= $this->percenthddc; ?>"></div>
 									</div>
 								</td>
-								<td nowrap style="width:40px"><span class="badge bg-light-blue"><?= $this->percenthdd; ?>%</span></td>
+								<td nowrap style="width:40px"><span class="badge bg-purple"><?= $this->percenthdd; ?>%</span></td>
 								<td nowrap><?= $this->usedhdd; ?> <?= $_lang['vserverbarof']; ?> <?= $this->totalhdd; ?> <?= $_lang['vserverbarused']; ?> / <?= $this->freehdd; ?> <?= $_lang['vserverbarfree']; ?></td>
 							</tr>
 						<?php } ?>
@@ -313,13 +292,13 @@ jQuery(document).ready(function($) {
 								<input class="btn btn-success btn-flat btn-sm" name="boot" type="button" value="<?= $_lang['vserverbootbutton']; ?>" onClick="dialogOpen('boot')">
 								<?php if ($this->vt == "kvm") { ?>
 									<input class="submitbuttonyellow" name="poweroff" type="button" value="<?= $_lang['vserverpoweroffbutton']; ?>" onClick="dialogOpen('poweroff')">
-									<input class="btn btn-primary btn-flat btn-sm" name="reconfigure" type="button" value="<?= $_lang['vserverkvmreconfigurebutton']; ?>" onClick="dialogOpen('kvmreconfigure')">
+									<input class="btn bg-purple btn-flat btn-sm" name="reconfigure" type="button" value="<?= $_lang['vserverkvmreconfigurebutton']; ?>" onClick="dialogOpen('kvmreconfigure')">
 								<?php } ?>
 								<?php if ($this->vt == "openvz" || $this->vt == "xen" || $this->vt == "xenhvm" || $this->vt == "kvm") { ?>
 									<a class="btn btn-default btn-flat btn-sm" href="reinstall.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverreinstallbutton']; ?></a>
 								<?php } ?>
 								<?php if ($this->centralbackup) { ?>
-									<a class="btn btn-primary btn-flat btn-sm" href="centralbackup.php?_v=<?= $this->vid; ?>"><?= $_lang['vservercentralbackupbutton']; ?></a>
+									<a class="btn bg-purple btn-flat btn-sm" href="centralbackup.php?_v=<?= $this->vid; ?>"><?= $_lang['vservercentralbackupbutton']; ?></a>
 								<?php } ?>
 								<?php if ($this->vt == "kvm" || $this->vt == "xenhvm") {
 									if ($this->ispxe) {
@@ -455,7 +434,7 @@ jQuery(document).ready(function($) {
 												<?php } ?>
 											</select>
 											<span class="input-group-btn">
-												<input name="keyboardsubmit" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="keyboardsubmit" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 										<input type="hidden" name="keyboardchange" value="1">
@@ -483,7 +462,7 @@ jQuery(document).ready(function($) {
 												</option>
 											</select>
 											<span class="input-group-btn">
-												<input name="border" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="border" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 									</form>
@@ -504,7 +483,7 @@ jQuery(document).ready(function($) {
 												<option value="3" <?php if ($this->nic == "3") { echo 'selected="selected"'; } ?>>Virtio</option>
 											</select>
 											<span class="input-group-btn">
-												<input name="nicsubmit" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="nicsubmit" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 									</form>
@@ -521,7 +500,7 @@ jQuery(document).ready(function($) {
 												<option value="2"  <?php if ($this->diskdriver == "2") { echo 'selected="selected"'; } ?>>virtio</option>
 											</select>
 											<span class="input-group-btn">
-												<input name="diskdriverx" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="diskdriverx" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 									</form>
@@ -541,7 +520,7 @@ jQuery(document).ready(function($) {
 												<option value="3" <?php if ($this->nic == "3") { echo 'selected="selected"'; } ?>>Novell NE2000</option>
 											</select>
 											<span class="input-group-btn">
-												<input name="nicsubmit" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="nicsubmit" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 									</form>
@@ -560,7 +539,7 @@ jQuery(document).ready(function($) {
 												<option value="1"  <?php if ($this->nicemu == "1") { echo 'selected="selected"'; } ?>>netfront</option>
 											</select>
 											<span class="input-group-btn">
-												<input name="nicemusubmit" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
+												<input name="nicemusubmit" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserversettingsbuttonset']; ?>">
 											</span>
 										</div>
 									</form>
@@ -611,7 +590,7 @@ jQuery(document).ready(function($) {
 												</select>
 												<span class="input-group-btn">
 													<input name="changedriver" type="submit" class="btn btn-success btn-flat btn-sm" value="<?= $_lang['vserverchangedriverbutton']; ?>">
-													<input name="unmountdriver" type="submit" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserverunmountdriverbutton']; ?>">
+													<input name="unmountdriver" type="submit" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserverunmountdriverbutton']; ?>">
 												</span>
 											</div>
 										</form>
@@ -690,7 +669,7 @@ jQuery(document).ready(function($) {
 									<td nowrap class="status-name"><?= $_lang['vservertabquickbackup']; ?></td>
 									<td>
 										<form action="" method="post">
-											<input type="submit" name="quickbackup" class="btn btn-primary btn-flat btn-sm" value="<?= $_lang['vserverquickbackupbutton']; ?>" />
+											<input type="submit" name="quickbackup" class="btn bg-purple btn-flat btn-sm" value="<?= $_lang['vserverquickbackupbutton']; ?>" />
 										</form>
 									</td>
 								</tr>
