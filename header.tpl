@@ -16,6 +16,8 @@
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
 			 folder instead of downloading all of them to reduce the load. -->
 	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>AdminLTE/dist/css/skins/skin-purple-light.min.css">
+	<!-- iCheck -->
+	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>AdminLTE/plugins/iCheck/square/purple.css">
 	<!-- NyaVM Custom CSS -->
 	<link rel="stylesheet" href="<?= $this->tpl_asset_path; ?>style.css">
 
@@ -32,6 +34,8 @@
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/dist/js/app.min.js"></script>
+	<!-- iCheck -->
+	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/plugins/iCheck/icheck.min.js"></script>
 	<!-- NyaVM -->
 	<script src="<?= $this->tpl_asset_path; ?>script.js"></script>
 </head>
@@ -90,12 +94,6 @@
 			<div class="navbar-custom-menu">
 				<ul class="nav navbar-nav">
 					<li>
-						<a href="account.php">
-							<i class="fa fa-user" aria-hidden="true"></i>
-							<span class="hidden-xs"><?= $_lang['menumyaccount']; ?></span>
-						</a>
-					</li>
-					<li>
 						<a href="javascript:dialogOpen('logout');">
 							<i class="fa fa-sign-out" aria-hidden="true"></i>
 							<span class="hidden-xs"><?= $_lang['logout']; ?></span>
@@ -119,14 +117,14 @@
 			</div>
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 			<ul class="sidebar-menu">
-				<li class="active">
+				<li class="home active">
 					<a href="home.php">
 						<i class="fa fa-dashboard"></i>
 						<span><?= $_lang['menuhome']; ?></span>
 					</a>
 				</li>
 				<?php if($this->showdnsmenu) {?>
-					<li>
+					<li class="dns">
 						<a href="dns.php">
 							<i class="fa fa-globe"></i>
 							<?=$_lang['menudns'];?>
@@ -134,13 +132,19 @@
 					</li>
 				<?php } ?>
 				<?php if($this->showhelp) { ?>
-					<li>
+					<li class="help">
 						<a href="http://vpsmanual.com" target="_blank">
 							<i class="fa fa-question"></i>
 							<?=$_lang['menuhelp'];?>
 						</a>
 					</li>
 				<?php } ?>
+				<li class="account">
+					<a href="account.php">
+						<i class="fa fa-user"></i>
+						<span><?= $_lang['menumyaccount']; ?></span>
+					</a>
+				</li>
 			</ul>
 		</section>
 		<!-- /.sidebar -->
@@ -148,3 +152,14 @@
 
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper">
+
+		<section class="content-header" id="loginAsAdmin" style="display:none">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="callout callout-info" style="margin-bottom:0">
+						<h4>Title</h4>
+						<a href="#"></a>
+					</div>
+				</div>
+			</div>
+		</section>
