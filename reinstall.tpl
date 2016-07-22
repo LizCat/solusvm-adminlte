@@ -109,8 +109,8 @@
 						        radioClass: 'iradio_square-purple',
 						        increaseArea: '20%' // optional
 						    });
-						    $('tr').click(function() {
-						        $(this).find('.reinstall-radio').iCheck('check');
+						    $('.reinstall-radio').click(function() {
+						        $(this).iCheck('check');
 						    });
 						});
 					</script>
