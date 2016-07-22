@@ -1,5 +1,9 @@
 <?php include $this->tpl_header; ?>
 
+<script type="text/javascript">
+	$('.sidebar-menu .active').removeClass('active');
+</script>
+
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
