@@ -199,13 +199,15 @@ jQuery.extend(modals, controlModals);
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<?php if ($this->vt == "openvz" || $this->vt == "xen") {
+					<?php /* --------------------------------
+					if ($this->vt == "openvz" || $this->vt == "xen") {
 						if ($this->showconsole != "1") { ?>
 							<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverconsolebutton']; ?></a>
 						<?php }
 					} else { ?>
 						<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>"><?= $_lang['vservervncbutton']; ?></a>
-					<?php } ?>
+					<?php }
+					-------------------------------- */ ?>
 
 					<a class="btn btn-default btn-flat pull-right box-btn-right" href="log.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverlogbutton']; ?></a>
 					<a class="btn bg-purple btn-flat pull-right box-btn-right" href="control.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverrefreshbutton']; ?></a>
@@ -420,6 +422,7 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 
+							<?php /* --------------------------------
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingskeyboard']; ?></td>
 								<td>
@@ -441,6 +444,7 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
+							-------------------------------- */ ?>
 
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingsboot']; ?></td>
@@ -547,6 +551,7 @@ jQuery.extend(modals, controlModals);
 							</tr>
 						<?php } ?>
 
+						<?php /* --------------------------------
 						<?php if ($this->vt == "kvm" || $this->vt == "xenhvm") { ?>
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabcdrom']; ?></td>
@@ -600,6 +605,7 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 						<?php } ?>
+						-------------------------------- */ ?>
 
 						<tr class="with-btn-sm">
 							<td nowrap class="status-name"><?= $_lang['vservertabhostname']; ?></td>

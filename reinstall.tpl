@@ -81,7 +81,7 @@
 								</div>
 
 								<div class="box-footer">
-									<a class="btn btn-default btn-flat" href="ontrol.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
+									<a class="btn btn-default btn-flat" href="control.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
 									<input class="btn bg-purple btn-flat pull-right" type="button" value="<?= $_lang['reinstallbutton']; ?>" onclick="dialogOpen('reinstall')">
 								</div>
 							</form>
@@ -90,7 +90,7 @@
 								<?= $_lang['reinstallnomediafound']; ?>
 							</div>
 							<div class="box-footer">
-								<a class="btn btn-default btn-flat" href="ontrol.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
+								<a class="btn btn-default btn-flat" href="control.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
 							</div>
 						<?php } ?>
 					<?php } else { ?>
@@ -98,7 +98,7 @@
 							<?= $_lang['reinstallvtnotsupported']; ?>
 						</div>
 						<div class="box-footer">
-							<a class="btn btn-default btn-flat" href="ontrol.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
+							<a class="btn btn-default btn-flat" href="control.php?_v=<?=$this->vid;?>"><?= $_lang['backbutton']; ?></a>
 						</div>
 					<?php } ?>
 
