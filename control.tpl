@@ -319,6 +319,7 @@ jQuery.extend(modals, controlModals);
 							</td>
 						</tr>
 
+						<!--
 						<?php if ($this->vt == "openvz" && ($this->extrastun || $this->extrasapp)) { ?>
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabsettings']; ?></td>
@@ -479,7 +480,7 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
-
+						-->
 						<?php } ?>
 
 						<?php if ($this->vt == "kvm") { ?>
@@ -670,6 +671,7 @@ jQuery.extend(modals, controlModals);
 						<?php } ?>
 
 						<?php if ($this->vt == "kvm" || $this->vt == "xenhvm") { ?>
+							<!--
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabvncpassword']; ?></td>
 								<td>
@@ -683,6 +685,7 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
+							-->
 						<?php } ?>
 
 						<?php if ($this->quickbackup) { ?>
