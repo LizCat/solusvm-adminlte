@@ -7,6 +7,11 @@ var controlModals = {
 		msg: "<?= $_lang['vserverkvmreconfigureboxmsg']; ?>",
 		url: "control.php?_v=<?= $this->vid; ?>&_a=kvmreconfigure"
 	},
+	kvmrootpassword: {
+		title: "<?= $_lang['vserverkvmrootpasswordboxtitle']; ?>",
+		msg: "<?= $_lang['vserverkvmrootpasswordboxmsg']; ?>",
+		url: "control.php?_v=<?= $this->vid; ?>&_a=kvmrootpassword"
+	},
 	poweroff: {
 		title: "<?= $_lang['vserverpoweroffboxtitle']; ?>",
 		msg: "<?= $_lang['vserverpoweroffboxmsg']; ?>",
@@ -290,10 +295,10 @@ jQuery.extend(modals, controlModals);
 							<td nowrap class="status-name"><?= $_lang['vservertabgeneral']; ?></td>
 							<td>
 								<input class="btn btn-info btn-flat btn-sm" name="reboot" type="button" value="<?= $_lang['vserverrebootbutton']; ?>" onClick="dialogOpen('reboot')">
-								<input class="btn btn-danger btn-flat btn-sm" name="shutdown" type="button" value="<?= $_lang['vservershutdownbutton']; ?>" onClick="dialogOpen('shutdown')">
+								<input class="btn btn-warning btn-flat btn-sm" name="shutdown" type="button" value="<?= $_lang['vservershutdownbutton']; ?>" onClick="dialogOpen('shutdown')">
 								<input class="btn btn-success btn-flat btn-sm" name="boot" type="button" value="<?= $_lang['vserverbootbutton']; ?>" onClick="dialogOpen('boot')">
 								<?php if ($this->vt == "kvm") { ?>
-									<input class="submitbuttonyellow" name="poweroff" type="button" value="<?= $_lang['vserverpoweroffbutton']; ?>" onClick="dialogOpen('poweroff')">
+									<input class="btn btn-danger btn-flat btn-sm" name="poweroff" type="button" value="<?= $_lang['vserverpoweroffbutton']; ?>" onClick="dialogOpen('poweroff')">
 									<input class="btn bg-purple btn-flat btn-sm" name="reconfigure" type="button" value="<?= $_lang['vserverkvmreconfigurebutton']; ?>" onClick="dialogOpen('kvmreconfigure')">
 								<?php } ?>
 								<?php if ($this->vt == "openvz" || $this->vt == "xen" || $this->vt == "xenhvm" || $this->vt == "kvm") { ?>
@@ -371,6 +376,7 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 
+							<?php /* --------------------------------
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingsvnc']; ?></td>
 								<td>
@@ -387,6 +393,7 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
+							-------------------------------- */ ?>
 
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingspae']; ?></td>
@@ -633,6 +640,15 @@ jQuery.extend(modals, controlModals);
 											</span>
 										</div>
 									</form>
+								</td>
+							</tr>
+						<?php } ?>
+
+						<?php if ($this->vt == "kvm") { ?>
+							<tr class="with-btn-sm">
+								<td nowrap class="status-name"><?= $_lang['vservertabrootpassword']; ?></td>
+								<td>
+									<input name="changekvmrootpassword" type="submit" class="btn btn-success btn-flat btn-sm" value="<?= $_lang['vserverchangerootpasswordbutton']; ?>" onclick="dialogOpen('kvmrootpassword')">
 								</td>
 							</tr>
 						<?php } ?>
