@@ -1,6 +1,51 @@
 <?php include $this->tpl_header; ?>
 
 <script type="text/javascript">
+var resetKVMPassword = function() {
+	/* global $ */
+	$.ajax("_vm_remote.php", {
+		type: "post",
+		dataType: "json",
+		data: {
+			act: "kvmrootpassword",
+			vi: "<?= $this->vid; ?>"
+		}
+	}).fail(function() {
+		$('#actionTitle').text("Failed");
+		$('#actionMsg').text("Timeout");
+		$('#closeBtn').hide();
+		$('#actionLink').attr('href', '#').on('click', function() {
+			$('#closeBtn').show();
+			$('#actionLink').off('click');
+		});
+		$('#actionModal').modal('show');
+	}).done(function(json) {
+		var title = "Failed", msg;
+		if (json) {
+			if (json.success) {
+				if (json.status == "1") {
+					title = "Success";
+					msg = "<?= $_lang[vserverkvmrootpasswordchanged]; ?> <b>" + json.rootpassword + "</b>";
+				} else {
+					msg = "<?= $_lang[vserverkvmrootpasswordfailed]; ?>";
+				}
+			} else {
+				msg = "Unknown Error: " + json.errorcode;
+			}
+		} else {
+			msg = "Unknown Error: Empty response";
+		}
+		$('#actionTitle').text(title);
+		$('#actionMsg').text(msg);
+		$('#closeBtn').hide();
+		$('#actionLink').attr('href', '#').on('click', function() {
+			$('#closeBtn').show();
+			$('#actionLink').off('click');
+		});
+		$('#actionModal').modal('show');
+	});
+};
+
 var controlModals = {
 	kvmreconfigure: {
 		title: "<?= $_lang['vserverkvmreconfigureboxtitle']; ?>",
@@ -10,7 +55,7 @@ var controlModals = {
 	kvmrootpassword: {
 		title: "<?= $_lang['vserverkvmrootpasswordboxtitle']; ?>",
 		msg: "<?= $_lang['vserverkvmrootpasswordboxmsg']; ?>",
-		url: "control.php?_v=<?= $this->vid; ?>&_a=kvmrootpassword"
+		callback: resetKVMPassword
 	},
 	poweroff: {
 		title: "<?= $_lang['vserverpoweroffboxtitle']; ?>",
@@ -319,7 +364,7 @@ jQuery.extend(modals, controlModals);
 							</td>
 						</tr>
 
-						<!--
+						<?php /* --------------------------------
 						<?php if ($this->vt == "openvz" && ($this->extrastun || $this->extrasapp)) { ?>
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabsettings']; ?></td>
@@ -377,7 +422,6 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 
-							<?php /* --------------------------------
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingsvnc']; ?></td>
 								<td>
@@ -394,7 +438,6 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
-							-------------------------------- */ ?>
 
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingspae']; ?></td>
@@ -430,7 +473,6 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 
-							<?php /* --------------------------------
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingskeyboard']; ?></td>
 								<td>
@@ -452,7 +494,6 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
-							-------------------------------- */ ?>
 
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vserverlabelsettingsboot']; ?></td>
@@ -480,8 +521,8 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
-						-->
 						<?php } ?>
+						-------------------------------- */ ?>
 
 						<?php if ($this->vt == "kvm") { ?>
 							<tr class="with-btn-sm">
@@ -670,8 +711,8 @@ jQuery.extend(modals, controlModals);
 							</tr>
 						<?php } ?>
 
+						<?php /* --------------------------------
 						<?php if ($this->vt == "kvm" || $this->vt == "xenhvm") { ?>
-							<!--
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabvncpassword']; ?></td>
 								<td>
@@ -685,8 +726,8 @@ jQuery.extend(modals, controlModals);
 									</form>
 								</td>
 							</tr>
-							-->
 						<?php } ?>
+						-------------------------------- */ ?>
 
 						<?php if ($this->quickbackup) { ?>
 							<?php if ($this->vt == "openvz") { ?>

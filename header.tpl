@@ -54,7 +54,7 @@
 				...
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default btn-flat" data-dismiss="modal"><?= $_lang[vserveralertno]; ?></button>
+				<button type="button" class="btn btn-default btn-flat" data-dismiss="modal" id="closeBtn"><?= $_lang[vserveralertno]; ?></button>
 				<a type="button" class="btn bg-purple btn-flat" id="actionLink" href="#"><?= $_lang[vserveralertyes]; ?></a>
 			</div>
 		</div>
