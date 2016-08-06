@@ -15,7 +15,7 @@ var resetKVMPassword = function() {
 		$('#actionMsg').text("Timeout");
 		$('#closeBtn').hide();
 		$('#actionLink').attr('href', '#').on('click', function() {
-			$('#closeBtn').show();
+			$('#closeBtn').show().click();
 			$('#actionLink').off('click');
 		});
 		$('#actionModal').modal('show');
@@ -39,7 +39,7 @@ var resetKVMPassword = function() {
 		$('#actionMsg').text(msg);
 		$('#closeBtn').hide();
 		$('#actionLink').attr('href', '#').on('click', function() {
-			$('#closeBtn').show();
+			$('#closeBtn').show().click();
 			$('#actionLink').off('click');
 		});
 		$('#actionModal').modal('show');
