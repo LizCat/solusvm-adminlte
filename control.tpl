@@ -1,11 +1,13 @@
 <?php include $this->tpl_header; ?>
 
 <script type="text/javascript">
-var doResetKVMPassword = function() {
+var doResetKVMPassword = function(e) {
 	/* global $ */
+	e.preventDefault();
+	$(this).off('click');
 	var yesText = $('#actionLink').text();
 	$('#closeBtn').hide();
-	$('#actionLink').text('Please Wait...')
+	$(this).text('Please Wait...')
 		.attr('href', '#')
 		.addClass('disabled')
 		.on('click', function() {
