@@ -1,8 +1,17 @@
 <?php include $this->tpl_header; ?>
 
 <script type="text/javascript">
-var resetKVMPassword = function() {
+var doResetKVMPassword = function() {
 	/* global $ */
+	var yesText = $('#actionLink').text();
+	$('#closeBtn').hide();
+	$('#actionLink').text('Please Wait...')
+		.attr('href', '#')
+		.addClass('disabled')
+		.on('click', function() {
+			$('#actionModal').modal('hide');
+			$(this).off('click');
+		});
 	$.ajax("_vm_remote.php", {
 		type: "post",
 		dataType: "json",
@@ -13,11 +22,6 @@ var resetKVMPassword = function() {
 	}).fail(function() {
 		$('#actionTitle').text("Failed");
 		$('#actionMsg').text("Timeout");
-		$('#actionLink').attr('href', '#').on('click', function() {
-			$('#closeBtn').click();
-			$('#actionLink').off('click');
-		});
-		$('#actionModal').modal('show');
 	}).done(function(json) {
 		var title = "Failed", msg;
 		if (json) {
@@ -36,11 +40,9 @@ var resetKVMPassword = function() {
 		}
 		$('#actionTitle').text(title);
 		$('#actionMsg').text(msg);
-		$('#actionLink').attr('href', '#').on('click', function() {
-			$('#closeBtn').click();
-			$('#actionLink').off('click');
-		});
-		$('#actionModal').modal('show');
+	}).always(function() {
+		$('#actionLink').text(yesText)
+			.removeClass('disabled');
 	});
 };
 
@@ -53,7 +55,7 @@ var controlModals = {
 	kvmrootpassword: {
 		title: "<?= $_lang['vserverkvmrootpasswordboxtitle']; ?>",
 		msg: "<?= $_lang['vserverkvmrootpasswordboxmsg']; ?>",
-		callback: resetKVMPassword
+		callback: doResetKVMPassword
 	},
 	poweroff: {
 		title: "<?= $_lang['vserverpoweroffboxtitle']; ?>",
