@@ -16,7 +16,7 @@ var doResetKVMPassword = function(e) {
 		});
 	$.ajax("_vm_remote.php", {
 		type: "post",
-		dataType: "json",
+		dataType: "text",
 		data: {
 			act: "kvmrootpassword",
 			vi: "<?= $this->vid; ?>"
@@ -24,8 +24,9 @@ var doResetKVMPassword = function(e) {
 	}).fail(function() {
 		$('#actionTitle').text("Failed");
 		$('#actionMsg').text("Timeout");
-	}).done(function(json) {
+	}).done(function(text) {
 		var title = "Failed", msg;
+        json = JSON.parse(text.match(/\{.*\}/)[0]);
 		if (json) {
 			if (json.success) {
 				if (json.status == "1") {
