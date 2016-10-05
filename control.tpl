@@ -42,7 +42,7 @@ var doResetKVMPassword = function(e) {
 			msg = "Unknown Error: Empty response";
 		}
 		$('#actionTitle').text(title);
-		$('#actionMsg').text(msg);
+		$('#actionMsg').html(msg);
 	}).always(function() {
 		$('#actionLink').text(yesText)
 			.removeClass('disabled');
