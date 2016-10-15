@@ -36,6 +36,8 @@
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/dist/js/app.min.js"></script>
 	<!-- iCheck -->
 	<script src="<?= $this->tpl_asset_path; ?>AdminLTE/plugins/iCheck/icheck.min.js"></script>
+	<!-- iCheck -->
+	<script src="<?= $this->tpl_asset_path; ?>jquery.backstretch.min.js"></script>
 	<!-- NyaVM -->
 	<script src="<?= $this->tpl_asset_path; ?>script.js"></script>
 </head>
