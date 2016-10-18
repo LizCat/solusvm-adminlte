@@ -6,7 +6,6 @@ var doResetKVMPassword = function(e) {
 	e.preventDefault();
 	$(this).off('click');
 	var yesText = $('#actionLink').text();
-	$('#closeBtn').hide();
 	$(this).text('Please Wait...')
 		.attr('href', '#')
 		.addClass('disabled')
