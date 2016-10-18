@@ -25,7 +25,7 @@ var doResetKVMPassword = function(e) {
 		$('#actionMsg').text("Timeout");
 	}).done(function(text) {
 		var title = "Failed", msg;
-        json = JSON.parse(text.match(/\{.*\}/)[0]);
+		json = JSON.parse(text.match(/\{.*\}/)[0]);
 		if (json) {
 			if (json.success) {
 				if (json.status == "1") {
@@ -745,6 +745,65 @@ jQuery.extend(modals, controlModals);
 						<?php } ?>
 
 					</tbody></table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="box">
+				<div class="box-header">
+					<h3 class="box-title"><?= $_lang['vservertabstatistics']; ?></h3>
+				</div>
+				<div class="box-body">
+					<div class="form-group">
+						<select name="si" id="stat-range" class="form-control">
+							<option value="0"><?=$_lang['vserverstatselectnone'];?></option>
+							<option value="3600">1 <?=$_lang['vserverstathour'];?></option>
+							<option value="7200">2 <?=$_lang['vserverstathours'];?></option>
+							<option value="14400">4 <?=$_lang['vserverstathours'];?></option>
+							<option value="21600">6 <?=$_lang['vserverstathours'];?></option>
+							<option value="28800">8 <?=$_lang['vserverstathours'];?></option>
+							<option value="43200">12 <?=$_lang['vserverstathours'];?></option>
+							<option value="86400">1 <?=$_lang['vserverstatday'];?></option>
+							<option value="172800">2 <?=$_lang['vserverstatdays'];?></option>
+							<option value="259200">3 <?=$_lang['vserverstatdays'];?></option>
+							<option value="345600">4 <?=$_lang['vserverstatdays'];?></option>
+							<option value="432000">5 <?=$_lang['vserverstatdays'];?></option>
+							<option value="518400">6 <?=$_lang['vserverstatdays'];?></option>
+							<option value="604800">1 <?=$_lang['vserverstatweek'];?></option>
+							<option value="1209600">2 <?=$_lang['vserverstatweeks'];?></option>
+							<option value="1814400">3 <?=$_lang['vserverstatweeks'];?></option>
+							<option value="2678400">1 <?=$_lang['vserverstatmonth'];?></option>
+							<option value="5356800">2 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="8035200">3 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="10713600">4 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="13392000">5 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="16070400">6 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="18748800">7 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="21427200">8 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="24105600">9 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="26784000">10 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="29462400">11 <?=$_lang['vserverstatmonths'];?></option>
+							<option value="31536000">1 <?=$_lang['vserverstatyear'];?></option>
+						</select>
+					</div>
+					<div id="lstats"></div>
+					<script>
+					$('#stat-range').on('change', function() {
+						var rand = Math.floor(Math.random() * 11);
+						var id = $(this).val();
+						var url = 'client_call_return_graph.php?action=vps&_v=<?= $this->vid; ?>&_g=' + id + '&_r=' + rand;
+						var $target = $('#lstats');
+
+						$target.html('<i class="fa fa-cog fa-spin" aria-hidden="true"></i> Loading...');
+						$.get(url, function(result) {
+							$target.html('');
+							$(result).find('img').appendTo($target).css('max-width', '100%');
+						});
+					});
+					</script>
 				</div>
 			</div>
 		</div>
