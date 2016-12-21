@@ -2,7 +2,7 @@
 
 <script type="text/javascript">
 var doResetKVMPassword = function(e) {
-	/* global $ */
+	/* global jQuery, $, modals */
 	e.preventDefault();
 	$(this).off('click');
 	var yesText = $('#actionLink').text();
@@ -24,8 +24,9 @@ var doResetKVMPassword = function(e) {
 		$('#actionTitle').text("Failed");
 		$('#actionMsg').text("Timeout");
 	}).done(function(text) {
-		var title = "Failed", msg;
-		json = JSON.parse(text.match(/\{.*\}/)[0]);
+		var title = "Failed";
+		var msg;
+		var json = JSON.parse(text.match(/\{.*\}/)[0]);
 		if (json) {
 			if (json.success) {
 				if (json.status == "1") {
@@ -147,7 +148,9 @@ jQuery.extend(modals, controlModals);
 
 					<p><?= $_lang[$this->msgsessuccess]; ?></p>
 					<?php if ($this->msgsessuccess == "vserverpxeenablesuccess") { ?>
-						<input class="btn btn-success btn-flat" name="vnc" type="button" value="<?= $_lang['vservervncbutton']; ?>" onClick="window.location='remote.php?_v=<?= $this->vid; ?>'">
+						<a class="btn btn-success btn-flat" name="vnc" type="button" href="remote.php?_v=<?= $this->vid; ?>" target="_blank">
+							<?= $_lang['vservervncbutton']; ?>
+						</a>
 					<?php } ?>
 				</div>
 			</div>
@@ -251,15 +254,15 @@ jQuery.extend(modals, controlModals);
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<?php /* --------------------------------
+					<?php
 					if ($this->vt == "openvz" || $this->vt == "xen") {
 						if ($this->showconsole != "1") { ?>
-							<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverconsolebutton']; ?></a>
+							<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>" target="_blank"><?= $_lang['vserverconsolebutton']; ?></a>
 						<?php }
 					} else { ?>
-						<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>"><?= $_lang['vservervncbutton']; ?></a>
+						<a class="btn btn-success btn-flat" href="remote.php?_v=<?= $this->vid; ?>" target="_blank"><?= $_lang['vservervncbutton']; ?></a>
 					<?php }
-					-------------------------------- */ ?>
+					?>
 
 					<a class="btn btn-default btn-flat pull-right box-btn-right" href="log.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverlogbutton']; ?></a>
 					<a class="btn bg-purple btn-flat pull-right box-btn-right" href="control.php?_v=<?= $this->vid; ?>"><?= $_lang['vserverrefreshbutton']; ?></a>
@@ -791,6 +794,7 @@ jQuery.extend(modals, controlModals);
 					</div>
 					<div id="lstats"></div>
 					<script>
+					/* global $ */
 					$('#stat-range').on('change', function() {
 						var rand = Math.floor(Math.random() * 11);
 						var id = $(this).val();
