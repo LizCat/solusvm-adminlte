@@ -22,7 +22,10 @@
 <body class="hold-transition login-page">
 <div class="login-box">
 	<div class="login-logo">
-		<a href="javascript:;"><b>Nya</b>VM</a>
+		<a href="javascript:;">
+			<!--<b>Nya</b>VM-->
+			<img src="<?= $this->tpl_asset_path; ?>images/login-logo.png" height="44">
+		</a>
 	</div>
 	<!-- /.login-logo -->
 	<div class="login-box-body">

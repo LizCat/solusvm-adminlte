@@ -81,9 +81,15 @@
 		<!-- Logo -->
 		<a href="home.php" class="logo">
 			<!-- mini logo for sidebar mini 50x50 pixels -->
-			<span class="logo-mini"><b>N</b>ya</span>
+			<span class="logo-mini">
+				<!--<b>N</b>ya-->
+				<img src="<?= $this->tpl_asset_path; ?>images/logo-min.png" height="50">
+			</span>
 			<!-- logo for regular state and mobile devices -->
-			<span class="logo-lg"><b>Nya</b>VM</span>
+			<span class="logo-lg">
+				<!--<b>Nya</b>VM-->
+				<img src="<?= $this->tpl_asset_path; ?>images/logo.png" height="50">
+			</span>
 		</a>
 
 		<!-- Header Navbar: style can be found in header.less -->
