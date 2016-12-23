@@ -16,10 +16,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
 	<h1>
-		<?= $_lang['reinstallboxtitle']; ?>
+		<?= $_lang['reinstallboxtitle']; ?> (<?= $this->vhostname; ?>)
 	</h1>
 	<ol class="breadcrumb">
 		<li><a href="home.php"><i class="fa fa-dashboard"></i> <?= $_lang['controlpanelname']; ?></a></li>
+		<li><a href="control.php?_v=<?= $this->vid; ?>"><?= $this->vhostname; ?></a></li>
 		<li class="active"><?= $_lang['reinstallboxtitle']; ?></li>
 	</ol>
 </section>
@@ -65,7 +66,8 @@
 									<table class="table"><tbody>
 										<?php foreach ($this->templatedata as $template) { ?>
 											<tr>
-												<td class="reinstall-image">
+												<!-- <?php print_r($template); ?> -->
+												<td class="reinstall-image" align="center">
 													<img src="<?= $this->tpl_asset_path; ?>images/icons/<?= $template['distro']; ?>.jpg">
 												</td>
 												<td>
