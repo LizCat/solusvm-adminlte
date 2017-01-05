@@ -6,7 +6,7 @@
 		<div class="pull-right hidden-xs">
 			Theme <b>AdminLTE</b>
 		</div>
-		<strong>Copyright &copy; 2015-2016 <a href="http://nyavm.com">NyaVM</a>.</strong> All rights
+		<strong>Copyright &copy; 2015-<?= date("Y"); ?> <a href="http://nyavm.com">NyaVM</a>.</strong> All rights
 		reserved.
 	</footer>
 
