@@ -716,7 +716,6 @@ jQuery.extend(modals, controlModals);
 							</tr>
 						<?php } ?>
 
-						<?php /* --------------------------------
 						<?php if ($this->vt == "kvm" || $this->vt == "xenhvm") { ?>
 							<tr class="with-btn-sm">
 								<td nowrap class="status-name"><?= $_lang['vservertabvncpassword']; ?></td>
@@ -732,7 +731,6 @@ jQuery.extend(modals, controlModals);
 								</td>
 							</tr>
 						<?php } ?>
-						-------------------------------- */ ?>
 
 						<?php if ($this->quickbackup) { ?>
 							<?php if ($this->vt == "openvz") { ?>
