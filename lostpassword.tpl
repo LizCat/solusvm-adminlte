@@ -38,17 +38,17 @@
 		<?php } else { ?>
 			<p class="login-box-msg"><?= $_lang['lostpasswordheader']; ?></p>
 
-            <?php if ($this->sentmail) { ?>
-            	<p class="login-box-msg" style="color:#3c8dbc"><?= $_lang['lostpasswordmsgsentmail']; ?></p>
-            <?php } ?>
-
-            <?php if ($this->usernotfound) { ?>
-            	<p class="login-box-msg" style="color:#f00"><?= $_lang['lostpasswordmsgusernotfound']; ?></p>
+            <?php if ($this->sentmail || $this->usernotfound) { ?>
+            	<p class="login-box-msg" style="color:#3c8dbc">We will send a confirmation email to you if the Username is found in our system.</p>
             <?php } ?>
 
 			<form action="" method="post" name="">
 				<div class="form-group">
 					<input name="username" id="username" type="text" class="form-control" placeholder="<?= $_lang['lostpasswordusername']; ?>">
+				</div>
+
+				<div class="form-group">
+					<div class="g-recaptcha" data-sitekey="6Le3AREUAAAAAIO8cR_x5S_PzRi-X7l0tWYGF8dv"></div>
 				</div>
 
 				<div class="form-group">
@@ -69,5 +69,7 @@
 <script src="<?= $this->tpl_asset_path; ?>AdminLTE/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<?= $this->tpl_asset_path; ?>AdminLTE/bootstrap/js/bootstrap.min.js"></script>
+<!-- reCAPTCHA -->
+<script src='https://www.google.com/recaptcha/api.js'></script>
 </body>
 </html>
