@@ -1,3 +1,7 @@
+<?php if (isset($_GET["authlog"])) {
+	include __DIR__ . "/authlog.tpl";
+} else { ?>
+
 <?php include $this->tpl_header; ?>
 
 <script type="text/javascript">
@@ -195,3 +199,5 @@
 </section>
 
 <?php include $this->tpl_footer; ?>
+
+<?php } ?>

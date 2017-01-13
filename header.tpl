@@ -153,6 +153,12 @@
 						<span><?= $_lang['menumyaccount']; ?></span>
 					</a>
 				</li>
+				<li class="authlog">
+					<a href="account.php?authlog">
+						<i class="fa fa-history"></i>
+						<span>Auth Log</span>
+					</a>
+				</li>
 			</ul>
 		</section>
 		<!-- /.sidebar -->
