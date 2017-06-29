@@ -70,6 +70,6 @@
 <!-- Bootstrap 3.3.6 -->
 <script src="<?= $this->tpl_asset_path; ?>AdminLTE/bootstrap/js/bootstrap.min.js"></script>
 <!-- reCAPTCHA -->
-<script src='https://www.google.com/recaptcha/api.js'></script>
+<!--<script src='https://www.google.com/recaptcha/api.js'></script>-->
 </body>
 </html>

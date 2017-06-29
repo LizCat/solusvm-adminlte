@@ -724,7 +724,8 @@ jQuery.extend(modals, controlModals);
 										<div class="input-group input-group-sm">
 											<input type="password" name="newvncpassword" id="newvncpassword" class="form-control">
 											<span class="input-group-btn">
-												<input name="changevncpassword" type="submit" class="btn btn-success btn-flat btn-sm" value="<?= $_lang['vserverchangevncpasswordbutton']; ?>">
+												<input name="changevncpassword" type="submit" class="btn btn-success btn-flat btn-sm" value="Active VNC">
+												<!-- <?= $_lang['vserverchangevncpasswordbutton']; ?> -->
 											</span>
 										</div>
 									</form>

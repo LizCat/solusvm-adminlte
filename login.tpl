@@ -56,6 +56,7 @@
 				</div>
 			</form>
 
+			<!--
 			<form action="" method="post" name="lang">
 				<div class="form-group">
 					<select name="language" class="form-control" id="language" ONCHANGE="document.lang.submit();">
@@ -65,6 +66,7 @@
 					</select>
 				</div>
 			</form>
+			-->
 
 			<a href="lostpassword.php"><?= $_lang['loginforgotpassword']; ?></a><br>
 
